@@ -118,27 +118,150 @@
             text-align: right;
         }
 
-        /* --- Page Header --- */
-        .page-header { 
-            background-color: var(--white); 
-            text-align: center; 
-            padding: 4rem 5%; 
-            border-bottom: 4px solid var(--accent-color);
-            box-shadow: var(--shadow-sm);
+    /* --- COMPACT HEADER & NAV --- */
+        .compact-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Logo & Name */
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-left .logo {
+            width: 45px; /* Scaled down to save vertical space */
+            height: auto;
+        }
+        .brand-name h1 { font-size: 1.4rem; line-height: 1; margin: 0; font-weight: 700; }
+        .brand-name p { font-size: 0.75rem; color: #a0aec0; margin: 0; text-transform: uppercase; letter-spacing: 1px;}
+
+        /* Contact Info */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .contact-compact {
+            display: flex;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            font-weight: 500;
         }
         
-        .page-header h2 { 
-            font-size: clamp(2rem, 4vw, 2.5rem); 
-            color: var(--primary-color); 
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            background-color: var(--secondary-color);
         }
-        
-        .page-header p { 
-            color: var(--text-light); 
-            max-width: 700px; 
-            margin: 0 auto; 
-            font-size: 1.1rem;
+        .nav-menu a, .dropbtn {
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+        .nav-menu a:hover, .dropdown:hover .dropbtn {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
+        /* Dropdown Structure */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 180px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-top: 3px solid var(--accent-color);
+        }
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .dropdown-content a:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+            padding-left: 20px; /* Slight indent on hover */
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* --- MOBILE LAYOUT (Exactly 2 Lines) --- */
+        @media (max-width: 768px) {
+            .header-main {
+                flex-wrap: wrap; /* Allows the contact info to drop perfectly to line 2 */
+                padding: 10px 5%;
+            }
+            
+            /* Line 1 */
+            .brand-left { width: 80%; }
+            .brand-name h1 { font-size: 1.2rem; }
+            .menu-toggle { display: block; width: 20%; text-align: right; }
+
+            /* Line 2 */
+            .header-right { 
+                width: 100%; 
+                justify-content: center; 
+                margin-top: 10px; 
+                padding-top: 10px;
+                border-top: 1px dashed rgba(255,255,255,0.2);
+            }
+            .contact-compact { font-size: 0.8rem; }
+            .sep { display: none; } /* Hides the dividing line on mobile for extra space */
+            
+            /* Mobile Dropdown Behavior */
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--primary-color);
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu a, .dropbtn { 
+                width: 100%; 
+                text-align: left; 
+                border-bottom: 1px solid rgba(255,255,255,0.05); 
+                padding: 15px 5%;
+            }
+            
+            /* Unfolds the dropdown permanently on mobile so users don't have to double-tap */
+            .dropdown-content {
+                display: block;
+                position: relative;
+                box-shadow: none;
+                background-color: rgba(0,0,0,0.15);
+                border-top: none;
+                min-width: 100%;
+            }
+            .dropdown-content a { color: #e2e8f0; padding-left: 10%; border-color: rgba(255,255,255,0.02); }
+            .dropdown-content a:hover { background-color: transparent; color: var(--accent-color); padding-left: 10%;}
         }
 
         /* --- Main Content --- */
