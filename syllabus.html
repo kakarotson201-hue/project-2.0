@@ -326,26 +326,43 @@
 </head>
 <body>
 
-<header>
-    <div class="header-container">
-        <div class="brand-section">
-            <img src="logo pic.png" alt="Al-Madina Logo" class="site-logo">
-            <div class="header-text">
+<header class="compact-header">
+    <div class="header-main">
+        <div class="brand-left">
+            <img src="logo pic.png" alt="Al-Madina Logo" class="logo">
+            <div class="brand-name">
                 <h1>Al-Madina</h1>
-                <p>Higher Secondary School & Shariah College</p>
+                <p>School & College</p>
             </div>
         </div>
 
-        <div class="header-contact">
-            <span>📍 Jinnah Park, RYK</span>
-            <span class="separator">|</span>
-            <span>📞 +92 300-6723912</span>
-            <span class="separator">|</span>
-            <span>✉️ info@almadina.edu.pk</span>
+        <div class="header-right">
+            <div class="contact-compact">
+                <span>📞 0300-6723912</span>
+                <span class="sep">|</span>
+                <span>✉️ info@almadina.edu.pk</span>
+            </div>
+            <button class="menu-toggle" id="mobile-menu-btn">☰</button>
         </div>
     </div>
-</header>
 
+    <nav id="main-nav" class="nav-menu">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        
+        <div class="dropdown">
+            <button class="dropbtn">ACADEMICS <span>▼</span></button>
+            <div class="dropdown-content">
+                <a href="syllabus.html">Syllabus</a>
+                <a href="facilities.html">Facilities</a>
+                <a href="uniform.html">Uniform</a>
+            </div>
+        </div>
+        
+        <a href="admission.html">ADMISSION</a>
+        <a href="fee.html">FEE</a>
+    </nav>
+</header>
 <div class="nav-container">
     <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">☰ MENU</button>
     <nav id="main-nav">
