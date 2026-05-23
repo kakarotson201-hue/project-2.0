@@ -198,149 +198,71 @@
             .separator { display: none; }
         }
 
-    /* --- UPGRADED MOBILE RESPONSIVENESS --- */
+ /* --- PREMIUM APP-STYLE MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            /* Refined Header */
-            .header-text h1 { font-size: 1.6rem; }
-            .site-logo { width: 60px; }
+            /* 1. Hide the old bulky menu button completely */
+            .menu-toggle { display: none !important; }
+
+            /* 2. Floating Frosted-Glass Bottom Navigation */
+            nav {
+                display: flex !important;
+                flex-direction: row;
+                position: fixed;
+                bottom: 25px;
+                left: 5%;
+                width: 90%;
+                background: rgba(26, 54, 93, 0.75); /* Translucent primary color */
+                backdrop-filter: blur(16px); /* Cinematic frosted glass effect */
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 40px; /* Pill shape */
+                overflow-x: auto; /* Allows swiping left/right through links */
+                padding: 8px 15px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+                z-index: 9999;
+                
+                /* Hide scrollbar for a clean look */
+                scrollbar-width: none; 
+                -ms-overflow-style: none;
+            }
+            nav::-webkit-scrollbar { display: none; }
             
-            /* Modern App-like Menu Button */
-            .menu-toggle { 
-                display: block; 
-                background-color: rgba(255,255,255,0.1); 
-                border-radius: 8px; 
-                margin: 10px auto; 
-                width: calc(100% - 30px); 
-                text-align: center; 
+            nav a {
+                padding: 12px 20px;
+                font-size: 0.85rem;
                 font-weight: 700;
-                letter-spacing: 1px;
-                border: 1px solid rgba(255,255,255,0.2);
+                white-space: nowrap;
+                border: none;
+                border-radius: 30px;
+                color: #e2e8f0;
             }
             
-            /* Sleek Animated Dropdown Navigation */
-            nav { 
-                display: none; 
-                flex-direction: column; 
-                width: 100%; 
-                background-color: var(--primary-color); 
-                box-shadow: inset 0 4px 6px rgba(0,0,0,0.2); 
+            /* Highlight the active/hover state with the accent color */
+            nav a:hover, nav a:active {
+                background: var(--accent-color);
+                color: var(--white);
+                box-shadow: 0 4px 10px rgba(237, 137, 54, 0.4);
             }
-            nav.active { 
-                display: flex; 
-                animation: slideDown 0.3s ease-out forwards; 
+
+            /* 3. Cinematic Header Gradient */
+            header {
+                background: linear-gradient(135deg, #0f2040 0%, var(--primary-color) 100%);
+                padding: 2rem 5%;
             }
-            nav a { 
-                padding: 16px; 
-                border-top: 1px solid rgba(255,255,255,0.08); 
-                text-align: center; 
-                letter-spacing: 1px; 
-            }
-            
-            /* Adjusted Spacing */
-            main { padding: 2rem 5%; }
-            .page-header { padding: 3rem 5%; }
-            .page-header h2 { font-size: 1.8rem; }
-            
-            /* Upgraded Cards (Softer Shadows, Rounder Edges) */
-            .content-card, .feature-box, .facility-card, .leader-card, .form-card, .syllabus-card, .fee-policy {
-                padding: 2rem 1.5rem;
-                margin-bottom: 1.5rem;
-                border-radius: 16px; /* Rounder, modern corners */
-                box-shadow: 0 8px 25px rgba(0,0,0,0.08); /* Deep, soft "floating" shadow */
-                border-top: none;
-                border-left: 5px solid var(--accent-color); /* Unified side accent line */
-            }
-            
-            /* Better Form Inputs for Touch */
-            input, select, textarea { padding: 16px; font-size: 16px; } /* Prevents iOS auto-zoom */
-            
-            /* Full-Width Mobile Hero & Buttons */
-            .hero { padding: 4rem 5%; }
-            .hero h2 { font-size: 2.2rem; }
-            .hero p { font-size: 1.05rem; }
-            .btn, .btn-submit { 
-                width: 100%; 
-                border-radius: 12px; 
-                padding: 18px 0; 
-                font-size: 1.1rem;
-            } 
-            
-            /* Smooth Menu Animation */
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        }/* --- UPGRADED MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            /* Refined Header */
-            .header-text h1 { font-size: 1.6rem; }
-            .site-logo { width: 60px; }
-            
-            /* Modern App-like Menu Button */
-            .menu-toggle { 
-                display: block; 
-                background-color: rgba(255,255,255,0.1); 
-                border-radius: 8px; 
-                margin: 10px auto; 
-                width: calc(100% - 30px); 
-                text-align: center; 
-                font-weight: 700;
-                letter-spacing: 1px;
-                border: 1px solid rgba(255,255,255,0.2);
-            }
-            
-            /* Sleek Animated Dropdown Navigation */
-            nav { 
-                display: none; 
-                flex-direction: column; 
-                width: 100%; 
-                background-color: var(--primary-color); 
-                box-shadow: inset 0 4px 6px rgba(0,0,0,0.2); 
-            }
-            nav.active { 
-                display: flex; 
-                animation: slideDown 0.3s ease-out forwards; 
-            }
-            nav a { 
-                padding: 16px; 
-                border-top: 1px solid rgba(255,255,255,0.08); 
-                text-align: center; 
-                letter-spacing: 1px; 
-            }
-            
-            /* Adjusted Spacing */
-            main { padding: 2rem 5%; }
-            .page-header { padding: 3rem 5%; }
-            .page-header h2 { font-size: 1.8rem; }
-            
-            /* Upgraded Cards (Softer Shadows, Rounder Edges) */
-            .content-card, .feature-box, .facility-card, .leader-card, .form-card, .syllabus-card, .fee-policy {
-                padding: 2rem 1.5rem;
-                margin-bottom: 1.5rem;
-                border-radius: 16px; /* Rounder, modern corners */
-                box-shadow: 0 8px 25px rgba(0,0,0,0.08); /* Deep, soft "floating" shadow */
-                border-top: none;
-                border-left: 5px solid var(--accent-color); /* Unified side accent line */
-            }
-            
-            /* Better Form Inputs for Touch */
-            input, select, textarea { padding: 16px; font-size: 16px; } /* Prevents iOS auto-zoom */
-            
-            /* Full-Width Mobile Hero & Buttons */
-            .hero { padding: 4rem 5%; }
-            .hero h2 { font-size: 2.2rem; }
-            .hero p { font-size: 1.05rem; }
-            .btn, .btn-submit { 
-                width: 100%; 
-                border-radius: 12px; 
-                padding: 18px 0; 
-                font-size: 1.1rem;
-            } 
-            
-            /* Smooth Menu Animation */
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
+            .header-text h1 { font-size: 1.8rem; letter-spacing: -0.5px; }
+            .site-logo { width: 70px; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.4)); }
+
+            /* 4. Offset content so the floating nav doesn't cover the footer */
+            main { padding-bottom: 120px; }
+            footer { padding-bottom: 150px; }
+
+            /* 5. Minimalist Content Cards */
+            .content-card, .feature-box, .facility-card, .form-card, .syllabus-card {
+                background: #ffffff;
+                border: none;
+                border-radius: 24px;
+                padding: 2.5rem 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             }
         }
     </style>
