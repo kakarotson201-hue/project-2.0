@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a365d"> 
+    <title>Online Admission - Al-Madina</title>
+    
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <style>
+        /* --- Core Theme & Variables --- */
+        :root {
+            --primary-color: #1a365d; 
+            --secondary-color: #2b6cb0;
+            --accent-color: #ed8936; 
+            --accent-hover: #dd6b20;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            color: var(--text-color); 
+            line-height: 1.6; 
+            background-color: var(--bg-light); 
+            overflow-x: hidden;
+        }
+
+        /* --- Header Top (Logo & Contact) --- */
+        header { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            padding: 1.5rem 5%; 
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .site-logo {
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
+            flex-shrink: 0;
+        }
+
+        .header-text h1 { font-size: 2rem; line-height: 1.1; margin: 0; font-weight: 700; }
+        .header-text p { font-size: 0.9rem; color: #e2e8f0; margin-top: 5px; }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+        .separator { color: rgba(255, 255, 255, 0.3); }
+
+        /* --- Navigation --- */
+        .nav-container {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a { 
+            color: var(--white); 
+            text-decoration: none; 
+            padding: 15px 20px; 
+            font-weight: 600; 
+            font-size: 1.05rem;
+            transition: all 0.3s ease; 
+        }
+
+        nav a:hover { 
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color); 
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: right;
+        }
+
+        /* --- Form Container --- */
+        main { 
+            max-width: 750px; 
+            margin: 4rem auto; 
+            padding: 0 5%; 
+        }
+        
+        .form-card { 
+            background: var(--white); 
+            padding: 3rem 4rem; 
+            border-radius: 12px; 
+            box-shadow: var(--shadow-lg); 
+            border-top: 5px solid var(--accent-color); 
+        }
+        
+        .form-card h2 { 
+            color: var(--primary-color); 
+            margin-bottom: 0.5rem; 
+            text-align: center; 
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .form-card > p { 
+            text-align: center; 
+            color: var(--text-light); 
+            margin-bottom: 2.5rem; 
+            font-size: 1.05rem;
+        }
+
+        /* --- Input Styling --- */
+        .form-group { margin-bottom: 1.5rem; }
+        
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            color: var(--primary-color); 
+            font-size: 0.95rem;
+        }
+        
+        input, select, textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            font-family: inherit;
+            color: var(--text-color);
+            background-color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus { 
+            border-color: var(--secondary-color); 
+            outline: none; 
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15); 
+        }
+
+        /* Placeholder coloring */
+        ::placeholder { color: #a0aec0; }
+
+        /* Customizing Select appearance */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        /* Button Styling */
+        .btn-submit { 
+            width: 100%; 
+            background-color: var(--accent-color); 
+            color: var(--white); 
+            padding: 16px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            margin-top: 1rem;
+            box-shadow: var(--shadow-md);
+        }
+        .btn-submit:hover { 
+            background-color: var(--accent-hover); 
+            transform: translateY(-2px); 
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* --- Footer --- */
+        footer { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 4rem 5% 2rem; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            width: 80px; height: auto; margin-bottom: 20px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        footer h3 { margin-bottom: 1rem; color: var(--white); font-size: 1.5rem;}
+        footer p { margin-bottom: 0.5rem; color: #e2e8f0; }
+        .copyright { margin-top: 3rem; font-size: 0.9rem; color: #a0aec0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; width: 100%; max-width: 600px;}
+
+    /* --- MOBILE RESPONSIVENESS FIXES --- */
+        @media (max-width: 992px) {
+            /* Hide contact info earlier to prevent crowding */
+            .header-contact { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            /* --- 1. Compact 1-2 Line Header --- */
+            header { padding: 0.8rem 5%; }
+            .header-container { 
+                flex-direction: row; /* Keeps logo and text side-by-side */
+                justify-content: flex-start; 
+                text-align: left; 
+            }
+            .brand-section { 
+                flex-direction: row; 
+                align-items: center; 
+                margin-bottom: 0; 
+                gap: 12px; 
+            }
+            .site-logo { width: 45px; } /* Shrinks the logo */
+            .header-text h1 { font-size: 1.2rem; }
+            .header-text p { font-size: 0.75rem; margin-top: 2px; }
+
+            /* --- 2. Professional, Sleek Menu --- */
+            .menu-toggle { 
+                display: block; 
+                background: transparent; /* Removes the bulky box */
+                border: none; 
+                margin: 0; 
+                padding: 12px 5%; 
+                width: 100%; 
+                text-align: right; 
+                font-weight: 600;
+                font-size: 1.1rem;
+                letter-spacing: 0.5px;
+            }
+            nav { box-shadow: none; }
+            nav a { 
+                padding: 12px; 
+                font-size: 0.95rem; 
+                border-top: 1px solid rgba(255,255,255,0.05); 
+            }
+            
+            /* --- 3. De-stretched Footer --- */
+            footer { padding: 2.5rem 5% 1.5rem; }
+            .footer-logo { width: 50px; margin-bottom: 12px; }
+            footer h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+            footer p { font-size: 0.85rem; margin-bottom: 0.3rem; }
+            .copyright { margin-top: 1.5rem; padding-top: 1rem; font-size: 0.8rem; }
+
+            /* --- 4. Main Content Adjustments --- */
+            main { padding: 2rem 5%; }
+            .page-header { padding: 2rem 5%; }
+            .page-header h2 { font-size: 1.6rem; }
+            
+            .content-card, .feature-box, .facility-card, .leader-card, .form-card, .syllabus-card, .fee-policy {
+                padding: 1.5rem;
+                margin-bottom: 1.2rem;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            }
+            
+            input, select, textarea { padding: 14px; font-size: 16px; } 
+            
+            .hero { padding: 3rem 5%; }
+            .hero h2 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .btn, .btn-submit { padding: 14px 0; font-size: 1.05rem; } 
+            
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-5px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="brand-section">
+            <img src="logo pic.png" alt="Al-Madina Logo" class="site-logo">
+            <div class="header-text">
+                <h1>Al-Madina</h1>
+                <p>Higher Secondary School & Shariah College</p>
+            </div>
+        </div>
+
+        <div class="header-contact">
+            <span>📍 Jinnah Park, RYK</span>
+            <span class="separator">|</span>
+            <span>📞 +92 300-6723912</span>
+            <span class="separator">|</span>
+            <span>✉️ info@almadina.edu.pk</span>
+        </div>
+    </div>
+</header>
+
+<div class="nav-container">
+    <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">☰ MENU</button>
+    <nav id="main-nav">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="admission.html">ADMISSION</a>
+        <a href="fee.html">FEE</a>
+        <a href="facilities.html">FACILITIES</a>
+        <a href="syllabus.html">SYLLABUS</a>
+        <a href="uniform.html">UNIFORM</a>
+    </nav>
+</div>
+
+    <main>
+        <div class="form-card">
+            <h2>Online Admission Form</h2>
+            <p>Please fill out the details below to register your child for the 2026 Academic Year.</p>
+
+            <form action="https://api.web3forms.com/submit" method="POST">
+                
+                <input type="hidden" name="access_key" value="f74487d9-0d32-4117-ba44-6a4f3a5715d1">
+                <input type="hidden" name="subject" value="New Student Admission - Al-Madina">
+                <input type="hidden" name="from_name" value="AMHSC Website">
+
+                <div class="form-group">
+                    <label>Student's Full Name *</label>
+                    <input type="text" name="student_name" placeholder="Enter student's name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Parent / Guardian Name *</label>
+                    <input type="text" name="parent_name" placeholder="Enter father or guardian name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>WhatsApp / Phone Number *</label>
+                    <input type="tel" name="phone" placeholder="03000000000" pattern="[0-9]{11}" title="Please enter exactly 11 digits" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Class / Grade Applying For *</label>
+                    <select name="class_applying" required>
+                        <option value="" disabled selected>Select a class</option>
+                        <option value="Hifz-ul-Quran Only">Hifz-ul-Quran Only</option>
+                        <option value="Hifz + Middle School (Dual Track)">Hifz + Middle School (Dual Track)</option>
+                        <option value="Primary (1-5)">Primary (1-5)</option>
+                        <option value="Middle (6-8)">Middle (6-8)</option>
+                        <option value="Matriculation">Matriculation</option>
+                        <option value="Intermediate / Shariah College">Intermediate / Shariah College</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Previous School Attended</label>
+                    <input type="text" name="previous_school" placeholder="Name of current or last school">
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Questions / Details</label>
+                    <textarea name="message" rows="4" placeholder="Any special needs or questions?"></textarea>
+                </div>
+
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <button type="submit" class="btn-submit">Submit Admission Request</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <img src="logo pic.png" alt="Al-Madina Logo" class="footer-logo">
+        <h3>Al-Madina Higher Secondary School</h3>
+        <p>Near Jamia Al-khalil, Jinnah Park, Rahim Yar Khan</p>
+        <p>Phone: +92 300-6723912 | +92 306-0256792</p>
+        <p class="copyright">&copy; 2026 Al-Madina. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const nav = document.getElementById('main-nav');
+
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

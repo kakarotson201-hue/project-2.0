@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a365d"> 
+    <title>Fee Structure - Al-Madina</title>
+    
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <style>
+        /* --- Core Theme & Variables --- */
+        :root {
+            --primary-color: #1a365d; 
+            --secondary-color: #2b6cb0;
+            --accent-color: #ed8936; 
+            --accent-hover: #dd6b20;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            color: var(--text-color); 
+            line-height: 1.6; 
+            background-color: var(--bg-light); 
+            overflow-x: hidden;
+        }
+
+        /* --- Header Top (Logo & Contact) --- */
+        header { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            padding: 1.5rem 5%; 
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .site-logo {
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
+            flex-shrink: 0;
+        }
+
+        .header-text h1 { font-size: 2rem; line-height: 1.1; margin: 0; font-weight: 700; }
+        .header-text p { font-size: 0.9rem; color: #e2e8f0; margin-top: 5px; }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+        .separator { color: rgba(255, 255, 255, 0.3); }
+
+        /* --- Navigation --- */
+        .nav-container {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a { 
+            color: var(--white); 
+            text-decoration: none; 
+            padding: 15px 20px; 
+            font-weight: 600; 
+            font-size: 1.05rem;
+            transition: all 0.3s ease; 
+        }
+
+        nav a:hover { 
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color); 
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: right;
+        }
+
+        /* --- Page Header --- */
+        .page-header { 
+            background-color: var(--white); 
+            text-align: center; 
+            padding: 4rem 5%; 
+            border-bottom: 4px solid var(--accent-color);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .page-header h2 { 
+            font-size: clamp(2rem, 4vw, 2.5rem); 
+            color: var(--primary-color); 
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* --- Main Content --- */
+        main { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 3rem 5%; 
+        }
+
+        /* --- Responsive Table Styling --- */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Enables horizontal swipe on mobile */
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px; /* Forces scrolling on small screens instead of squishing text */
+        }
+
+        th, td {
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        tr:nth-child(even) { background-color: #f8fafc; }
+        
+        tr:hover { 
+            background-color: #edf2f7; 
+            transition: background 0.2s ease; 
+        }
+
+        td.highlight {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.05rem;
+        }
+
+        /* --- Policy Section --- */
+        .fee-policy {
+            background-color: var(--white);
+            padding: 2.5rem 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .fee-policy h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .fee-policy ul {
+            margin-left: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .fee-policy li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .fee-policy strong {
+            color: var(--secondary-color);
+        }
+
+        /* --- Footer --- */
+        footer { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 4rem 5% 2rem; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            width: 80px; height: auto; margin-bottom: 20px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        footer h3 { margin-bottom: 1rem; color: var(--white); font-size: 1.5rem;}
+        footer p { margin-bottom: 0.5rem; color: #e2e8f0; }
+        .copyright { margin-top: 3rem; font-size: 0.9rem; color: #a0aec0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; width: 100%; max-width: 600px;}
+
+      /* --- MOBILE RESPONSIVENESS FIXES --- */
+        @media (max-width: 992px) {
+            /* Hide contact info earlier to prevent crowding */
+            .header-contact { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            /* --- 1. Compact 1-2 Line Header --- */
+            header { padding: 0.8rem 5%; }
+            .header-container { 
+                flex-direction: row; /* Keeps logo and text side-by-side */
+                justify-content: flex-start; 
+                text-align: left; 
+            }
+            .brand-section { 
+                flex-direction: row; 
+                align-items: center; 
+                margin-bottom: 0; 
+                gap: 12px; 
+            }
+            .site-logo { width: 45px; } /* Shrinks the logo */
+            .header-text h1 { font-size: 1.2rem; }
+            .header-text p { font-size: 0.75rem; margin-top: 2px; }
+
+            /* --- 2. Professional, Sleek Menu --- */
+            .menu-toggle { 
+                display: block; 
+                background: transparent; /* Removes the bulky box */
+                border: none; 
+                margin: 0; 
+                padding: 12px 5%; 
+                width: 100%; 
+                text-align: right; 
+                font-weight: 600;
+                font-size: 1.1rem;
+                letter-spacing: 0.5px;
+            }
+            nav { box-shadow: none; }
+            nav a { 
+                padding: 12px; 
+                font-size: 0.95rem; 
+                border-top: 1px solid rgba(255,255,255,0.05); 
+            }
+            
+            /* --- 3. De-stretched Footer --- */
+            footer { padding: 2.5rem 5% 1.5rem; }
+            .footer-logo { width: 50px; margin-bottom: 12px; }
+            footer h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+            footer p { font-size: 0.85rem; margin-bottom: 0.3rem; }
+            .copyright { margin-top: 1.5rem; padding-top: 1rem; font-size: 0.8rem; }
+
+            /* --- 4. Main Content Adjustments --- */
+            main { padding: 2rem 5%; }
+            .page-header { padding: 2rem 5%; }
+            .page-header h2 { font-size: 1.6rem; }
+            
+            .content-card, .feature-box, .facility-card, .leader-card, .form-card, .syllabus-card, .fee-policy {
+                padding: 1.5rem;
+                margin-bottom: 1.2rem;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            }
+            
+            input, select, textarea { padding: 14px; font-size: 16px; } 
+            
+            .hero { padding: 3rem 5%; }
+            .hero h2 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .btn, .btn-submit { padding: 14px 0; font-size: 1.05rem; } 
+            
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-5px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="brand-section">
+            <img src="logo pic.png" alt="Al-Madina Logo" class="site-logo">
+            <div class="header-text">
+                <h1>Al-Madina</h1>
+                <p>Higher Secondary School & Shariah College</p>
+            </div>
+        </div>
+
+        <div class="header-contact">
+            <span>📍 Jinnah Park, RYK</span>
+            <span class="separator">|</span>
+            <span>📞 +92 300-6723912</span>
+            <span class="separator">|</span>
+            <span>✉️ info@almadina.edu.pk</span>
+        </div>
+    </div>
+</header>
+
+<div class="nav-container">
+    <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">☰ MENU</button>
+    <nav id="main-nav">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="admission.html">ADMISSION</a>
+        <a href="fee.html">FEE</a>
+        <a href="facilities.html">FACILITIES</a>
+        <a href="syllabus.html">SYLLABUS</a>
+        <a href="uniform.html">UNIFORM</a>
+    </nav>
+</div>
+
+    <section class="page-header">
+        <h2>Fee Structure</h2>
+        <p>Affordable, high-quality modern and religious education for the 2026 Academic Year.</p>
+    </section>
+
+    <main>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class / Program</th>
+                        <th>Admission Fee (One-Time)</th>
+                        <th>Monthly Tuition Fee</th>
+                        <th>Annual Charges</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="highlight">Hifz-ul-Quran</td>
+                        <td>Rs. 2,000</td>
+                        <td>Rs. 1,500</td>
+                        <td>Rs. 1,000</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Primary (Class 1 to 5)</td>
+                        <td>Rs. 3,000</td>
+                        <td>Rs. 2,000</td>
+                        <td>Rs. 1,500</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Middle (Class 6 to 8)</td>
+                        <td>Rs. 4,000</td>
+                        <td>Rs. 2,500</td>
+                        <td>Rs. 2,000</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Matriculation (9th & 10th)</td>
+                        <td>Rs. 5,000</td>
+                        <td>Rs. 3,500</td>
+                        <td>Rs. 2,500</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Intermediate (11th & 12th)</td>
+                        <td>Rs. 6,000</td>
+                        <td>Rs. 4,500</td>
+                        <td>Rs. 3,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <section class="fee-policy">
+            <h3>Important Fee Policies</h3>
+            <ul>
+                <li><strong>Due Date:</strong> All monthly fees must be submitted by the 10th of every month.</li>
+                <li><strong>Late Fee:</strong> A late fee fine of Rs. 50 per day will be charged after the due date.</li>
+                <li><strong>Sibling Discount:</strong> A 15% discount on monthly tuition is available for the second child, and 20% for the third child enrolled from the same family.</li>
+                <li><strong>Orphan Quota:</strong> Special fee concessions and free education quotas are available for deserving orphan students. Please contact the administration for details.</li>
+                <li><strong>Refunds:</strong> The Admission Fee and Annual Charges are strictly non-refundable.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <img src="logo pic.png" alt="Al-Madina Logo" class="footer-logo">
+        <h3>Al-Madina Higher Secondary School</h3>
+        <p>Near Jamia Al-khalil, Jinnah Park, Rahim Yar Khan</p>
+        <p>Phone: +92 300-6723912 | +92 306-0256792</p>
+        <p class="copyright">&copy; 2026 Al-Madina. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const nav = document.getElementById('main-nav');
+
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

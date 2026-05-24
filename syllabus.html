@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a365d"> 
+    <title>Syllabus - Al-Madina</title>
+    
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <style>
+        /* --- Core Theme & Variables --- */
+        :root {
+            --primary-color: #1a365d; 
+            --secondary-color: #2b6cb0;
+            --accent-color: #ed8936; 
+            --accent-hover: #dd6b20;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            color: var(--text-color); 
+            line-height: 1.6; 
+            background-color: var(--bg-light); 
+            overflow-x: hidden;
+        }
+
+        /* --- Header Top (Logo & Contact) --- */
+        header { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            padding: 1.5rem 5%; 
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .site-logo {
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
+            flex-shrink: 0;
+        }
+
+        .header-text h1 { font-size: 2rem; line-height: 1.1; margin: 0; font-weight: 700; }
+        .header-text p { font-size: 0.9rem; color: #e2e8f0; margin-top: 5px; }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+        .separator { color: rgba(255, 255, 255, 0.3); }
+
+        /* --- Navigation --- */
+        .nav-container {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a { 
+            color: var(--white); 
+            text-decoration: none; 
+            padding: 15px 20px; 
+            font-weight: 600; 
+            font-size: 1.05rem;
+            transition: all 0.3s ease; 
+        }
+
+        nav a:hover { 
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color); 
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: right;
+        }
+
+        /* --- Page Header --- */
+        .page-header { 
+            background-color: var(--white); 
+            text-align: center; 
+            padding: 4rem 5%; 
+            border-bottom: 4px solid var(--accent-color);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .page-header h2 { 
+            font-size: clamp(2rem, 4vw, 2.5rem); 
+            color: var(--primary-color); 
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p { 
+            color: var(--text-light); 
+            max-width: 700px; 
+            margin: 0 auto; 
+            font-size: 1.1rem;
+        }
+
+        /* --- Main Content --- */
+        main { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 4rem 5%; 
+        }
+
+        /* --- Syllabus Grid --- */
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .syllabus-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .syllabus-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .syllabus-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .syllabus-card ul { list-style-type: none; }
+
+        .syllabus-card li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Custom Bullet Points */
+        .syllabus-card li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        /* Highlight specific text */
+        .highlight-text {
+            color: var(--primary-color);
+            font-weight: 700;
+            background-color: #fffaf0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* --- Board Note Section --- */
+        .board-note {
+            background-color: #ebf8ff;
+            border-left: 5px solid var(--secondary-color);
+            padding: 2rem;
+            margin-top: 4rem;
+            border-radius: 0 12px 12px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .board-note h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        .board-note p {
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        /* --- Footer --- */
+        footer { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 4rem 5% 2rem; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            width: 80px; height: auto; margin-bottom: 20px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        footer h3 { margin-bottom: 1rem; color: var(--white); font-size: 1.5rem;}
+        footer p { margin-bottom: 0.5rem; color: #e2e8f0; }
+        .copyright { margin-top: 3rem; font-size: 0.9rem; color: #a0aec0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; width: 100%; max-width: 600px;}
+
+       /* --- MOBILE RESPONSIVENESS FIXES --- */
+        @media (max-width: 992px) {
+            /* Hide contact info earlier to prevent crowding */
+            .header-contact { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            /* --- 1. Compact 1-2 Line Header --- */
+            header { padding: 0.8rem 5%; }
+            .header-container { 
+                flex-direction: row; /* Keeps logo and text side-by-side */
+                justify-content: flex-start; 
+                text-align: left; 
+            }
+            .brand-section { 
+                flex-direction: row; 
+                align-items: center; 
+                margin-bottom: 0; 
+                gap: 12px; 
+            }
+            .site-logo { width: 45px; } /* Shrinks the logo */
+            .header-text h1 { font-size: 1.2rem; }
+            .header-text p { font-size: 0.75rem; margin-top: 2px; }
+
+            /* --- 2. Professional, Sleek Menu --- */
+            .menu-toggle { 
+                display: block; 
+                background: transparent; /* Removes the bulky box */
+                border: none; 
+                margin: 0; 
+                padding: 12px 5%; 
+                width: 100%; 
+                text-align: right; 
+                font-weight: 600;
+                font-size: 1.1rem;
+                letter-spacing: 0.5px;
+            }
+            nav { box-shadow: none; }
+            nav a { 
+                padding: 12px; 
+                font-size: 0.95rem; 
+                border-top: 1px solid rgba(255,255,255,0.05); 
+            }
+            
+            /* --- 3. De-stretched Footer --- */
+            footer { padding: 2.5rem 5% 1.5rem; }
+            .footer-logo { width: 50px; margin-bottom: 12px; }
+            footer h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+            footer p { font-size: 0.85rem; margin-bottom: 0.3rem; }
+            .copyright { margin-top: 1.5rem; padding-top: 1rem; font-size: 0.8rem; }
+
+            /* --- 4. Main Content Adjustments --- */
+            main { padding: 2rem 5%; }
+            .page-header { padding: 2rem 5%; }
+            .page-header h2 { font-size: 1.6rem; }
+            
+            .content-card, .feature-box, .facility-card, .leader-card, .form-card, .syllabus-card, .fee-policy {
+                padding: 1.5rem;
+                margin-bottom: 1.2rem;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            }
+            
+            input, select, textarea { padding: 14px; font-size: 16px; } 
+            
+            .hero { padding: 3rem 5%; }
+            .hero h2 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .btn, .btn-submit { padding: 14px 0; font-size: 1.05rem; } 
+            
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-5px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="brand-section">
+            <img src="logo pic.png" alt="Al-Madina Logo" class="site-logo">
+            <div class="header-text">
+                <h1>Al-Madina</h1>
+                <p>Higher Secondary School & Shariah College</p>
+            </div>
+        </div>
+
+        <div class="header-contact">
+            <span>📍 Jinnah Park, RYK</span>
+            <span class="separator">|</span>
+            <span>📞 +92 300-6723912</span>
+            <span class="separator">|</span>
+            <span>✉️ info@almadina.edu.pk</span>
+        </div>
+    </div>
+</header>
+
+<div class="nav-container">
+    <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">☰ MENU</button>
+    <nav id="main-nav">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="admission.html">ADMISSION</a>
+        <a href="fee.html">FEE</a>
+        <a href="facilities.html">FACILITIES</a>
+        <a href="syllabus.html">SYLLABUS</a>
+        <a href="uniform.html">UNIFORM</a>
+    </nav>
+</div>
+
+    <section class="page-header">
+        <h2>Academic Curriculum</h2>
+        <p>A comprehensive blend of modern contemporary education (Asria) and deeply rooted Islamic studies to ensure the holistic development of our students.</p>
+    </section>
+
+    <main>
+        
+        <div class="syllabus-grid">
+            
+            <div class="syllabus-card">
+                <h3>Hifz-ul-Quran (Dual Track)</h3>
+                <ul>
+                    <li>Complete Memorization of the Holy Quran</li>
+                    <li>Tajweed and Qira'at Rules</li>
+                    <li><span class="highlight-text">Integrated Middle Education:</span> Students can pursue Hifz side-by-side with regular school subjects so they don't fall behind academically.</li>
+                    <li>Customized daily timetable for balanced learning</li>
+                    <li>Masnoon Duas and Islamic Etiquettes</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-card">
+                <h3>Primary & Middle (Class 1-8)</h3>
+                <ul>
+                    <li>English (Oxford/PTB Syllabus)</li>
+                    <li>Urdu & Islamiat</li>
+                    <li>Mathematics & General Science</li>
+                    <li>Computer Science (Practical Lab Work)</li>
+                    <li><span class="highlight-text">Optional Hifz Track:</span> Middle school students can opt to memorize the Quran alongside their standard daily classes.</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-card">
+                <h3>Matriculation (9th & 10th)</h3>
+                <ul>
+                    <li><strong>Science Group:</strong> Physics, Chemistry, Biology/Computer Science, Mathematics.</li>
+                    <li><strong>Arts Group:</strong> General Math, General Science, Islamic Studies, Education.</li>
+                    <li><strong>Compulsory:</strong> English, Urdu, Islamiat, Tarjuma-tul-Quran, Pak Studies.</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-card">
+                <h3>Higher Secondary (11th & 12th)</h3>
+                <ul>
+                    <li><strong>F.Sc:</strong> Pre-Medical & Pre-Engineering</li>
+                    <li><strong>ICS:</strong> Computer Science, Math, Physics/Stats</li>
+                    <li><strong>I.Com:</strong> Accounting, Commerce, Economics</li>
+                    <li><strong>Shariah College:</strong> Specialized Islamic Jurisprudence & Arabic Literature</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="board-note">
+            <h4>Board Affiliation & Examinations</h4>
+            <p>Our Matriculation and Higher Secondary programs follow the official syllabus prescribed by the Punjab Textbook Board (PTB) and are fully affiliated with the regional Board of Intermediate and Secondary Education (BISE). Regular weekly and monthly assessments are conducted to ensure students are fully prepared for their final board examinations.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <img src="logo pic.png" alt="Al-Madina Logo" class="footer-logo">
+        <h3>Al-Madina Higher Secondary School</h3>
+        <p>Near Jamia Al-khalil, Jinnah Park, Rahim Yar Khan</p>
+        <p>Phone: +92 300-6723912 | +92 306-0256792</p>
+        <p class="copyright">&copy; 2026 Al-Madina. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const nav = document.getElementById('main-nav');
+
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
